@@ -51,7 +51,7 @@ export const useWebSocket = () => {
         const progressData = {
           steps: message.data.value || 0,
           total_steps: message.data.max || 1,
-          progress: ((message.data.value || 0) / (message.data.max || 1)) * 100
+          progress: Math.round(((message.data.value || 0) / (message.data.max || 1)) * 100)
         };
         
         if (steps !== undefined && total_steps !== undefined) {
