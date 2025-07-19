@@ -57,7 +57,7 @@ export const useImageGeneration = () => {
             setGenerationState(prev => ({
               ...prev,
               isGenerating: false,
-              generatedImage: `http://localhost:8080/outputs/${imageData}`,
+              generatedImage: `https://gif-seats-sure-wild.trycloudflare.com/outputs/${imageData}`,
             }));
           }
         } catch (error) {

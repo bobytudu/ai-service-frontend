@@ -31,16 +31,19 @@ export default function ImageDisplay({
       }
       className="shadow-xs border border-gray-200"
     >
-      {generatedImage && (
-        <Image
-          src={generatedImage}
-          alt="Generated"
-          className="max-h-full ml-auto w-full"
-        />
+      {generatedImage && !isGenerating && (
+        <div className="flex justify-center">
+          <Image
+            src={generatedImage}
+            alt="Generated"
+            className="max-h-full w-full"
+          />
+        </div>
       )}
 
       {isGenerating && (
-        <div className="text-center flex flex-col">
+        <div className="text-center flex items-center justify-center min-h-[500px]">
+          <div className="flex flex-col">
           <Progress
             percent={progressData?.progress}
             className="mb-4"
@@ -50,10 +53,11 @@ export default function ImageDisplay({
           <Typography.Text type="secondary" className="text-sm mt-2 block">
             This may take a few moments
           </Typography.Text>
+          </div>
         </div>
       )}
       {!isGenerating && !generatedImage && (
-        <div className="bg-gray-50 flex-1 rounded-lg border-2 border-dashed border-gray-200 flex items-center justify-center h-full min-h-80">
+        <div className="bg-gray-50 flex-1 min-h-[500px] rounded-lg border-2 border-dashed border-gray-200 flex items-center justify-center h-full">
           <div className="text-center">
             <PictureOutlined className="text-5xl text-gray-400 mb-4 block" />
             <Typography.Text className="text-gray-600 block">
