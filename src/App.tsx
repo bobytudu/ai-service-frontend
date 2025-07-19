@@ -6,8 +6,10 @@ import Chat from './pages/Chat'
 import DocumentChat from './pages/DocumentChat'
 import AudioGeneration from './pages/AudioGeneration'
 import ImageAnalysis from './pages/ImageAnalysis'
+import { useWebSocket } from './hooks/useWebSocket'
 
 function App() {
+  useWebSocket()
   return (
     <Layout>
       <Routes>
