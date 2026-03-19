@@ -10,7 +10,7 @@ const { Title, Text, Paragraph } = Typography;
 const { TextArea } = Input;
 
 const DEFAULT_PROMPT =
-  "beautiful scenery nature glass bottle landscape, , purple galaxy bottle,";
+  "A photograph of an albino woman with white skin and dark hair wearing black in the style of old baroque oil paintings, with soft focus, wearing a pearl necklace around her neck, with a dark background, with rosy cheeks, with a long veil covering her face, looking straight ahead";
 
 const PromptInput = ({
   prompt,
@@ -68,6 +68,8 @@ const TextToImage = () => {
     downloadImage,
     progressData,
   } = useImageGeneration();
+
+  console.log(generatedImage);
 
   const handleGenerate = useCallback(() => {
     generateImage(prompt);

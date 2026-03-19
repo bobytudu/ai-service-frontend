@@ -2,9 +2,11 @@ import { useCallback, useEffect, useState } from "react";
 import { message } from "antd";
 import _ from "lodash";
 import { useWebSocketStore } from "../stores/websocketStore";
-import { defaultWorkflow } from "../workflows/default";
 import axios from "axios";
 import type { GenerationState } from "../types/text-to-image";
+import { hidreamWorkflow } from "../workflows/hidream";
+
+const backendApi = "http://localhost:8080";
 
 export const useImageGeneration = () => {
     const [generationState, setGenerationState] = useState<GenerationState>({
@@ -20,9 +22,9 @@ export const useImageGeneration = () => {
           message.warning("Please enter a prompt");
           return;
         }
-  
+  //"A photograph of an albino woman with white skin and dark hair wearing black in the style of old baroque oil paintings, with soft focus, wearing a pearl necklace around her neck, with a dark background, with rosy cheeks, with a long veil covering her face, looking straight ahead"
         setGenerationState(prev => ({ ...prev, isGenerating: true }));
-        const { data } = await axios.post("/api/prompt", defaultWorkflow(prompt));
+        const { data } = await axios.post("/api/prompt", hidreamWorkflow(prompt));
         setGenerationState(prev => ({ 
           ...prev, 
           promptId: data.prompt_id,
@@ -57,7 +59,7 @@ export const useImageGeneration = () => {
             setGenerationState(prev => ({
               ...prev,
               isGenerating: false,
-              generatedImage: `https://gif-seats-sure-wild.trycloudflare.com/outputs/${imageData}`,
+              generatedImage: `${backendApi}/outputs/${imageData}`,
             }));
           }
         } catch (error) {
